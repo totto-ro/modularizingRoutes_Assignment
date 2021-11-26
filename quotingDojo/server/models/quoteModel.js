@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose' );
 
-const UserSchema = new mongoose.Schema({
+const QuoteSchema = new mongoose.Schema({
     name : {
         type : String,
         required : true,
@@ -11,19 +11,19 @@ const UserSchema = new mongoose.Schema({
         type : String,
         required : true,
         minlength : 2,
-        maxlength : 100
+        maxlength : 200
     }
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
-const User = mongoose.model( 'user', UserSchema );
+const Quote = mongoose.model( 'quotes', QuoteSchema );
 
-const UserModel = {
-    createUser : function( newUser ){
-        return User.create( newUser );
+const QuoteModel = {
+    createQuote : function( newQuote ){
+        return Quote.create( newQuote );
     },
     getQuotes : function( ){
-        return User.find().sort( { created_at: -1 } );
+        return Quote.find().sort( { created_at: -1 } );
     }
 };
 
-module.exports = {UserModel};
+module.exports = {QuoteModel};
